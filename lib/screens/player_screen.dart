@@ -412,6 +412,9 @@ class _PlayerScreenState extends State<PlayerScreen>
 
   // 处理返回按钮点击
   void _onBackPressed() async {
+    // 检查上下文是否有效
+    if (!mounted) return;
+    
     // 如果正在投屏，停止投屏
     if (_isCasting && _dlnaDevice != null) {
       try {
@@ -434,6 +437,9 @@ class _PlayerScreenState extends State<PlayerScreen>
           ),
         );
 
+        // 再次检查上下文是否有效
+        if (!mounted) return;
+
         // 如果用户选择停止，才调用 stop
         if (shouldStop == true) {
           try {
@@ -452,7 +458,11 @@ class _PlayerScreenState extends State<PlayerScreen>
 
     // 关闭页面前保存进度
     _saveProgress(force: true, scene: '返回按钮');
-    Navigator.of(context).pop();
+    
+    // 再次检查上下文是否有效
+    if (mounted) {
+      Navigator.of(context).pop();
+    }
   }
 
   // 退出网页全屏
@@ -483,8 +493,14 @@ class _PlayerScreenState extends State<PlayerScreen>
       } else {
         // 本地播放：根据设备类型从对应播放器获取
         if (_videoPlayerController == null) return;
-        currentPosition = _videoPlayerController!.currentPosition;
-        duration = _videoPlayerController!.duration;
+        try {
+          currentPosition = _videoPlayerController!.currentPosition;
+          duration = _videoPlayerController!.duration;
+        } catch (e) {
+          // 播放器可能已经被销毁，跳过保存
+          debugPrint('获取播放器状态失败: $e');
+          return;
+        }
       }
 
       if (currentPosition == null || duration == null) return;
@@ -542,12 +558,15 @@ class _PlayerScreenState extends State<PlayerScreen>
       );
 
       // 异步保存播放记录（不等待结果）
-      PageCacheService().savePlayRecord(playRecord, context).then((_) {
-        debugPrint(
-            '保存播放进度 [场景: $scene]: source: $currentSourceSnapshot, id: $currentIDSnapshot, 第${currentEpisodeIndexSnapshot + 1}集, 时间: ${playTime}秒');
-      }).catchError((e) {
-        debugPrint('保存播放进度失败 [场景: $scene]: $e');
-      });
+      // 检查上下文是否有效
+      if (mounted) {
+        PageCacheService().savePlayRecord(playRecord, context).then((_) {
+          debugPrint(
+              '保存播放进度 [场景: $scene]: source: $currentSourceSnapshot, id: $currentIDSnapshot, 第${currentEpisodeIndexSnapshot + 1}集, 时间: ${playTime}秒');
+        }).catchError((e) {
+          debugPrint('保存播放进度失败 [场景: $scene]: $e');
+        });
+      }
     } catch (e) {
       debugPrint('保存播放进度失败: $e');
     }

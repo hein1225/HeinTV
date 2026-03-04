@@ -485,7 +485,14 @@ class _MobilePlayerControlsState extends State<MobilePlayerControls> {
     // 计算新的方向
     final newIsPortrait = !_isPortrait;
     
-    // 先设置屏幕方向
+    // 先更新UI状态
+    if (mounted) {
+      setState(() {
+        _isPortrait = newIsPortrait;
+      });
+    }
+    
+    // 然后设置屏幕方向
     if (newIsPortrait) {
       // 切换到竖屏
       await SystemChrome.setPreferredOrientations([
@@ -498,13 +505,6 @@ class _MobilePlayerControlsState extends State<MobilePlayerControls> {
         DeviceOrientation.landscapeLeft,
         DeviceOrientation.landscapeRight,
       ]);
-    }
-    
-    // 然后更新UI状态
-    if (mounted) {
-      setState(() {
-        _isPortrait = newIsPortrait;
-      });
     }
   }
 

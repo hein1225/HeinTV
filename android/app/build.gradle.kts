@@ -32,31 +32,11 @@ android {
         versionName = flutter.versionName
     }
 
-    val keystorePropertiesFile = rootProject.file("key.properties")
-    val hasSigningConfig = keystorePropertiesFile.exists()
-
-    signingConfigs {
-        if (hasSigningConfig) {
-            create("release") {
-                val properties = Properties()
-                properties.load(FileInputStream(keystorePropertiesFile))
-                
-                storeFile = file(properties.getProperty("storeFile")!!)
-                storePassword = properties.getProperty("storePassword")
-                keyAlias = properties.getProperty("keyAlias")
-                keyPassword = properties.getProperty("keyPassword")
-            }
-        }
-    }
-
     buildTypes {
         release {
-            if (hasSigningConfig) {
-                signingConfig = signingConfigs.getByName("release")
-            } else {
-                // Fallback to debug signing for local development
-                signingConfig = signingConfigs.getByName("debug")
-            }
+            // 使用 debug 签名配置，确保每次构建保持一致
+            // 注意：在实际生产环境中，应该使用正式的签名密钥
+            signingConfig = signingConfigs.getByName("debug")
             
             // Enable R8 code shrinking, obfuscation, and optimization
             isMinifyEnabled = true
