@@ -374,6 +374,10 @@ class _MobilePlayerControlsState extends State<MobilePlayerControls> {
   void _enterFullscreen() {
     widget.state.enterFullscreen();
     widget.onFullscreenChange(true);
+    // 进入全屏模式时，设置为横屏状态
+    setState(() {
+      _isPortrait = false;
+    });
     _onUserInteraction();
   }
 
@@ -478,10 +482,11 @@ class _MobilePlayerControlsState extends State<MobilePlayerControls> {
 
   Future<void> _toggleScreenOrientation() async {
     _onUserInteraction();
-    setState(() {
-      _isPortrait = !_isPortrait;
-    });
-    if (_isPortrait) {
+    // 计算新的方向
+    final newIsPortrait = !_isPortrait;
+    
+    // 先设置屏幕方向
+    if (newIsPortrait) {
       // 切换到竖屏
       await SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
@@ -493,6 +498,13 @@ class _MobilePlayerControlsState extends State<MobilePlayerControls> {
         DeviceOrientation.landscapeLeft,
         DeviceOrientation.landscapeRight,
       ]);
+    }
+    
+    // 然后更新UI状态
+    if (mounted) {
+      setState(() {
+        _isPortrait = newIsPortrait;
+      });
     }
   }
 

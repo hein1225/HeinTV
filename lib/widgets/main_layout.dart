@@ -10,7 +10,6 @@ import '../utils/font_utils.dart';
 import 'user_menu.dart';
 import 'dart:io' show Platform;
 import 'dart:async';
-import 'windows_title_bar.dart';
 
 class MainLayout extends StatefulWidget {
   final Widget content;
@@ -311,15 +310,7 @@ class _MainLayoutState extends State<MainLayout> {
                         ),
                         child: Column(
                           children: [
-                            // Windows 自定义标题栏
-                            if (Platform.isWindows)
-                              WindowsTitleBar(
-                                customBackgroundColor: widget.isSearchMode
-                                    ? (themeService.isDarkMode
-                                        ? const Color(0xFF121212)
-                                        : const Color(0xFFf5f5f5))
-                                    : null,
-                              ),
+
                             // 固定 Header
                             _buildHeader(context, themeService),
                             // 主要内容区域

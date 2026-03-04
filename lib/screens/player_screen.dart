@@ -21,7 +21,6 @@ import '../utils/device_utils.dart';
 import '../widgets/player_details_panel.dart';
 import '../widgets/player_episodes_panel.dart';
 import '../widgets/player_sources_panel.dart';
-import '../widgets/windows_title_bar.dart';
 
 class PlayerScreen extends StatefulWidget {
   final String? source;
@@ -2619,11 +2618,7 @@ class _PlayerScreenState extends State<PlayerScreen>
           ),
           child: Column(
             children: [
-              // Windows 自定义标题栏（播放页使用纯黑背景）
-              if (Platform.isWindows)
-                const WindowsTitleBar(
-                  customBackgroundColor: Color(0xFF000000),
-                ),
+
               // 主要内容
               Expanded(
                 child: Stack(
@@ -3000,7 +2995,7 @@ class _HoverBackButtonState extends State<_HoverBackButton> {
           decoration: _isHovering
               ? BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.grey.withValues(alpha: 0.5),
+                  color: Colors.grey.withOpacity(0.5),
                 )
               : null,
           child: Icon(

@@ -11,7 +11,6 @@ import '../utils/device_utils.dart';
 import '../utils/font_utils.dart';
 import '../services/theme_service.dart';
 import 'package:provider/provider.dart';
-import '../widgets/windows_title_bar.dart';
 import '../widgets/switch_loading_overlay.dart';
 import '../widgets/filter_pill_hover.dart';
 import '../widgets/filter_options_selector.dart';
@@ -433,11 +432,7 @@ class _LivePlayerScreenState extends State<LivePlayerScreen>
             children: [
               Column(
                 children: [
-                  // Windows 自定义标题栏
-                  if (Platform.isWindows)
-                    const WindowsTitleBar(
-                      customBackgroundColor: Color(0xFF000000),
-                    ),
+
                   // 主要内容
                   Expanded(
                     child: Stack(
