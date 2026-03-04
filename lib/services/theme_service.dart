@@ -74,64 +74,101 @@ class ThemeService extends ChangeNotifier {
     final textTheme = Platform.isWindows
         ? ThemeData.light().textTheme.copyWith(
               bodyLarge: const TextStyle(
-                color: Color(0xFF2c3e50),
+                color: Color(0xFF1e293b),
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Microsoft YaHei',
               ),
               bodyMedium: const TextStyle(
-                color: Color(0xFF2c3e50),
+                color: Color(0xFF1e293b),
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Microsoft YaHei',
               ),
               bodySmall: const TextStyle(
-                color: Color(0xFF7f8c8d),
+                color: Color(0xFF64748b),
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Microsoft YaHei',
               ),
               titleLarge: const TextStyle(
-                color: Color(0xFF2c3e50),
-                fontWeight: FontWeight.w500,
+                color: Color(0xFF1e293b),
+                fontWeight: FontWeight.w600,
                 fontFamily: 'Microsoft YaHei',
               ),
               titleMedium: const TextStyle(
-                color: Color(0xFF2c3e50),
+                color: Color(0xFF1e293b),
                 fontWeight: FontWeight.w500,
                 fontFamily: 'Microsoft YaHei',
               ),
               titleSmall: const TextStyle(
-                color: Color(0xFF2c3e50),
+                color: Color(0xFF1e293b),
                 fontWeight: FontWeight.w500,
                 fontFamily: 'Microsoft YaHei',
               ),
             )
         : const TextTheme(
-            bodyLarge: TextStyle(color: Color(0xFF2c3e50)),
-            bodyMedium: TextStyle(color: Color(0xFF2c3e50)),
-            bodySmall: TextStyle(color: Color(0xFF7f8c8d)),
-            titleLarge: TextStyle(color: Color(0xFF2c3e50)),
-            titleMedium: TextStyle(color: Color(0xFF2c3e50)),
-            titleSmall: TextStyle(color: Color(0xFF2c3e50)),
+            bodyLarge: TextStyle(color: Color(0xFF1e293b)),
+            bodyMedium: TextStyle(color: Color(0xFF1e293b)),
+            bodySmall: TextStyle(color: Color(0xFF64748b)),
+            titleLarge: TextStyle(color: Color(0xFF1e293b)),
+            titleMedium: TextStyle(color: Color(0xFF1e293b)),
+            titleSmall: TextStyle(color: Color(0xFF1e293b)),
           );
 
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xFF2c3e50),
+        seedColor: const Color(0xFF3b82f6),
         brightness: Brightness.light,
+        primary: const Color(0xFF3b82f6),
+        secondary: const Color(0xFF10b981),
+        surface: const Color(0xFFffffff),
+        background: const Color(0xFFf8fafc),
+        error: const Color(0xFFef4444),
       ),
-      scaffoldBackgroundColor: const Color(0xFFf8f9fa),
+      scaffoldBackgroundColor: const Color(0xFFf8fafc),
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFFffffff),
-        foregroundColor: Color(0xFF2c3e50),
+        foregroundColor: Color(0xFF1e293b),
         elevation: 0,
+        shadowColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
       ),
       cardTheme: const CardThemeData(
         color: Color(0xFFffffff),
-        elevation: 2,
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
       ),
       textTheme: textTheme,
       fontFamily: Platform.isWindows ? 'Microsoft YaHei' : null,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF3b82f6),
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          elevation: 0,
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0xFFe2e8f0)),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0xFFe2e8f0)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0xFF3b82f6), width: 2),
+        ),
+        filled: true,
+        fillColor: const Color(0xFFf1f5f9),
+      ),
     );
   }
 
@@ -140,64 +177,101 @@ class ThemeService extends ChangeNotifier {
     final textTheme = Platform.isWindows
         ? ThemeData.dark().textTheme.copyWith(
               bodyLarge: const TextStyle(
-                color: Color(0xFFffffff),
+                color: Color(0xFFf8fafc),
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Microsoft YaHei',
               ),
               bodyMedium: const TextStyle(
-                color: Color(0xFFffffff),
+                color: Color(0xFFf8fafc),
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Microsoft YaHei',
               ),
               bodySmall: const TextStyle(
-                color: Color(0xFFb0b0b0),
+                color: Color(0xFF94a3b8),
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Microsoft YaHei',
               ),
               titleLarge: const TextStyle(
-                color: Color(0xFFffffff),
-                fontWeight: FontWeight.w500,
+                color: Color(0xFFf8fafc),
+                fontWeight: FontWeight.w600,
                 fontFamily: 'Microsoft YaHei',
               ),
               titleMedium: const TextStyle(
-                color: Color(0xFFffffff),
+                color: Color(0xFFf8fafc),
                 fontWeight: FontWeight.w500,
                 fontFamily: 'Microsoft YaHei',
               ),
               titleSmall: const TextStyle(
-                color: Color(0xFFffffff),
+                color: Color(0xFFf8fafc),
                 fontWeight: FontWeight.w500,
                 fontFamily: 'Microsoft YaHei',
               ),
             )
         : const TextTheme(
-            bodyLarge: TextStyle(color: Color(0xFFffffff)),
-            bodyMedium: TextStyle(color: Color(0xFFffffff)),
-            bodySmall: TextStyle(color: Color(0xFFb0b0b0)),
-            titleLarge: TextStyle(color: Color(0xFFffffff)),
-            titleMedium: TextStyle(color: Color(0xFFffffff)),
-            titleSmall: TextStyle(color: Color(0xFFffffff)),
+            bodyLarge: TextStyle(color: Color(0xFFf8fafc)),
+            bodyMedium: TextStyle(color: Color(0xFFf8fafc)),
+            bodySmall: TextStyle(color: Color(0xFF94a3b8)),
+            titleLarge: TextStyle(color: Color(0xFFf8fafc)),
+            titleMedium: TextStyle(color: Color(0xFFf8fafc)),
+            titleSmall: TextStyle(color: Color(0xFFf8fafc)),
           );
 
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xFF2c3e50),
+        seedColor: const Color(0xFF3b82f6),
         brightness: Brightness.dark,
+        primary: const Color(0xFF60a5fa),
+        secondary: const Color(0xFF34d399),
+        surface: const Color(0xFF1e293b),
+        background: const Color(0xFF0f172a),
+        error: const Color(0xFFf87171),
       ),
-      scaffoldBackgroundColor: const Color(0xFF121212),
+      scaffoldBackgroundColor: const Color(0xFF0f172a),
       appBarTheme: const AppBarTheme(
-        backgroundColor: Color(0xFF1e1e1e),
-        foregroundColor: Color(0xFFffffff),
+        backgroundColor: Color(0xFF1e293b),
+        foregroundColor: Color(0xFFf8fafc),
         elevation: 0,
+        shadowColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
       ),
       cardTheme: const CardThemeData(
-        color: Color(0xFF1e1e1e),
-        elevation: 2,
+        color: Color(0xFF1e293b),
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
       ),
       textTheme: textTheme,
       fontFamily: Platform.isWindows ? 'Microsoft YaHei' : null,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF3b82f6),
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          elevation: 0,
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0xFF334155)),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0xFF334155)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0xFF60a5fa), width: 2),
+        ),
+        filled: true,
+        fillColor: const Color(0xFF334155),
+      ),
     );
   }
 }

@@ -13,6 +13,7 @@ import 'dart:io' show Platform;
 import 'package:macos_window_utils/macos_window_utils.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -80,6 +81,21 @@ class HeinTVApp extends StatelessWidget {
                   child: child!,
                 );
               }
+              
+              // 为 Android 平台设置状态栏颜色
+              if (Platform.isAndroid) {
+                final isDarkMode = themeService.isDarkMode;
+                SystemChrome.setSystemUIOverlayStyle(
+                  SystemUiOverlayStyle(
+                    statusBarColor: Colors.transparent,
+                    statusBarBrightness: isDarkMode ? Brightness.dark : Brightness.light,
+                    statusBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
+                    systemNavigationBarColor: isDarkMode ? const Color(0xFF121212) : const Color(0xFFf8f9fa),
+                    systemNavigationBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
+                  ),
+                );
+              }
+              
               return child!;
             },
           );
