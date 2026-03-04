@@ -1495,6 +1495,9 @@ class _PlayerScreenState extends State<PlayerScreen>
 
   /// 处理推荐卡片点击
   void _onRecommendTap(DoubanRecommendItem recommend) {
+    // 检查上下文是否有效
+    if (!mounted) return;
+    
     // 投屏状态下，弹窗提示用户先关闭投屏
     if (_isCasting) {
       showDialog(
@@ -1514,19 +1517,28 @@ class _PlayerScreenState extends State<PlayerScreen>
     }
 
     // 本地播放：根据设备类型暂停对应播放器
-    if (_videoPlayerController?.isPlaying == true) {
-      _videoPlayerController?.pause();
+    if (_videoPlayerController != null) {
+      try {
+        if (_videoPlayerController!.isPlaying) {
+          _videoPlayerController!.pause();
+        }
+      } catch (e) {
+        // 播放器可能已经被销毁，跳过暂停操作
+        debugPrint('暂停播放器失败: $e');
+      }
     }
 
     // 跳转到新的播放页，只传递title参数
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PlayerScreen(
-          title: recommend.title,
+    if (mounted) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PlayerScreen(
+            title: recommend.title,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   /// 构建选集区域

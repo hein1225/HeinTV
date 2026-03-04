@@ -482,30 +482,21 @@ class _MobilePlayerControlsState extends State<MobilePlayerControls> {
 
   Future<void> _toggleScreenOrientation() async {
     _onUserInteraction();
-    // 计算新的方向
-    final newIsPortrait = !_isPortrait;
+    // 总是切换到竖屏，不再切换到横屏
+    // 这样可以确保在全屏自动横屏后，点击旋转按钮会切换到竖屏
     
     // 先更新UI状态
     if (mounted) {
       setState(() {
-        _isPortrait = newIsPortrait;
+        _isPortrait = true;
       });
     }
     
-    // 然后设置屏幕方向
-    if (newIsPortrait) {
-      // 切换到竖屏
-      await SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
-    } else {
-      // 切换到横屏
-      await SystemChrome.setPreferredOrientations([
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.landscapeRight,
-      ]);
-    }
+    // 然后设置屏幕方向为竖屏
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
   }
 
   String _formatDuration(Duration duration) {
