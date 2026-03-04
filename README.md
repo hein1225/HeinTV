@@ -6,7 +6,7 @@
 
 HeinTV 是基于 Selene 源代码二次开发的影视播放客户端，感谢 MoonTechLab (https://github.com/MoonTechLab/Selene-Source) 项目提供的基础代码。
 
-本项目以 MoonTV / LunaTV 为后端客户端，在保证原汁原味的同时，优化了移动端操作体验，为用户提供更加流畅、便捷的观影体验。
+本项目为空壳软件，必须以 MoonTV / LunaTV 为后端客户端使用，在保证原汁原味的同时，优化了移动端操作体验，为用户提供更加流畅、便捷的观影体验。
 
 ## 技术栈
 
