@@ -61,7 +61,7 @@ class BangumiService {
     try {
       const apiUrl = 'https://api.bgm.tv/calendar';
       final headers = {
-        'User-Agent': 'senshinya/selene/1.0.0 (Android) (https://github.com/hein1225/HeinTV/)',
+        'User-Agent': 'hein1225/HeinPlay/1.0.0 (Android) (https://github.com/hein1225/HeinPlay/)',
         'Accept': 'application/json',
       };
 
@@ -149,7 +149,7 @@ class BangumiService {
     try {
       final apiUrl = 'https://api.bgm.tv/v0/subjects/$bangumiId';
       final headers = {
-        'User-Agent': 'senshinya/selene/1.0.0 (Android) (https://github.com/hein1225/HeinTV/)',
+        'User-Agent': 'hein1225/HeinPlay/1.0.0 (Android) (https://github.com/hein1225/HeinPlay/)',
         'Accept': 'application/json',
       };
 

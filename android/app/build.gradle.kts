@@ -8,6 +8,13 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// 读取签名配置
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("local.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace = "org.hein.heintv"
     compileSdk = flutter.compileSdkVersion
@@ -19,6 +26,16 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
+    }
+
+    // 添加正式签名配置
+    signingConfigs {
+        create("release") {
+            keyAlias = keystoreProperties["key.alias"] as String
+            keyPassword = keystoreProperties["key.alias.password"] as String
+            storeFile = file(keystoreProperties["key.store"] as String)
+            storePassword = keystoreProperties["key.store.password"] as String
+        }
     }
 
     defaultConfig {
@@ -34,9 +51,8 @@ android {
 
     buildTypes {
         release {
-            // 使用 debug 签名配置，确保每次构建保持一致
-            // 注意：在实际生产环境中，应该使用正式的签名密钥
-            signingConfig = signingConfigs.getByName("debug")
+            // 使用正式签名配置
+            signingConfig = signingConfigs["release"]
             
             // Enable R8 code shrinking, obfuscation, and optimization
             isMinifyEnabled = true

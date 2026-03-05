@@ -26,11 +26,11 @@ void main() async {
   // 启动定期清理
   cacheService.startPeriodicCleanup();
 
-  runApp(const HeinTVApp());
+  runApp(const HeinPlayApp());
 }
 
-class HeinTVApp extends StatelessWidget {
-  const HeinTVApp({super.key});
+class HeinPlayApp extends StatelessWidget {
+  const HeinPlayApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class HeinTVApp extends StatelessWidget {
       child: Consumer<ThemeService>(
         builder: (context, themeService, child) {
           return MaterialApp(
-            title: 'HeinTV',
+            title: '海因影视',
             debugShowCheckedModeBanner: false,
             theme: themeService.lightTheme,
             darkTheme: themeService.darkTheme,

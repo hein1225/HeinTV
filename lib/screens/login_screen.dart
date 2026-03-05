@@ -550,11 +550,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // HeinTV 标题 - 可点击
+        // 海因影视标题 - 可点击
         GestureDetector(
           onTap: _handleLogoTap,
           child: Text(
-            'HeinTV',
+            '海因影视',
             style: FontUtils.sourceCodePro(
               fontSize: 42,
               fontWeight: FontWeight.w400,
@@ -817,11 +817,11 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // HeinTV 标题 - 可点击
+          // 海因影视标题 - 可点击
           GestureDetector(
             onTap: _handleLogoTap,
             child: Text(
-              'HeinTV',
+              '海因影视',
               style: FontUtils.sourceCodePro(
                 fontSize: 42,
                 fontWeight: FontWeight.w400,
